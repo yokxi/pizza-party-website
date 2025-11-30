@@ -499,3 +499,113 @@ footer {
         order: -1;
     }
 }
+
+/* --- Catering Section (Updated) --- */
+
+/* La sezione generale */
+.catering {
+    text-align: center;
+    /* Centra tutto il testo */
+}
+
+/* Il box/card che contiene le info */
+.catering-box {
+    background: var(--bg-card);
+    border: 2px solid var(--primary-color);
+    /* Bordo rosa */
+    border-radius: 20px;
+    padding: 60px 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    /* Centra il box orizzontalmente */
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Ombra per profondità */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    /* Spazio tra gli elementi */
+}
+
+/* L'icona della casa */
+.catering-icon {
+    font-size: 4rem;
+    /* Molto più grande */
+    color: var(--secondary-color);
+    /* Giallo */
+    background: rgba(255, 224, 102, 0.1);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Titolo dentro il box */
+.catering-box h3 {
+    font-size: 2.2rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Testo descrittivo */
+.catering-box p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 500px;
+    /* Evita che le righe siano troppo lunghe */
+    margin: 0;
+}
+
+/* Il riquadro del prezzo */
+.price-tag {
+    background: rgba(255, 77, 128, 0.1);
+    /* Sfondo rosa leggero */
+    border: 1px dashed var(--primary-color);
+    padding: 20px 40px;
+    border-radius: 15px;
+    margin: 10px 0;
+}
+
+.price-tag .amount {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    /* Prezzo rosa acceso */
+}
+
+.price-tag .details {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* Hover effect sul box intero */
+.catering-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 77, 128, 0.15);
+    transition: var(--transition);
+}
+
+/* Adattamento per cellulari */
+@media (max-width: 600px) {
+    .catering-box {
+        padding: 40px 20px;
+    }
+
+    .catering-box h3 {
+        font-size: 1.8rem;
+    }
+
+    .price-tag .amount {
+        font-size: 2.5rem;
+    }
+}
