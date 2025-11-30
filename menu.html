@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Pizza Party</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Pizza Party Logo">
+                <span>Pizza Party</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">Chi Siamo</a></li>
+                <li><a href="#" class="nav-link active">Menu</a></li>
+                <li><a href="index.html#catering" class="nav-link">Catering</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Il Nostro Menu</h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px;">
+                Scopri le creazioni di Valter e Gianfranco. Ingredienti freschi, impasto leggero e tanta passione.
+            </p>
+        </div>
+    </section>
+
+    <section id="menu-list" class="section menu" style="padding-top: 0;">
+        <div class="container">
+            <div class="menu-grid">
+
+                <div class="menu-item fade-in-up">
+                    <div class="pizza-icon">🍕</div>
+                    <div class="menu-details">
+                        <h3>Margherita</h3>
+                        <p>Pomodoro San Marzano DOP, mozzarella fior di latte, basilico fresco, olio EVO.</p>
+                    </div>
+                    <span class="price">€ 6,50</span>
+                </div>
+
+                <div class="menu-item fade-in-up delay-1">
+                    <div class="pizza-icon">🌶️</div>
+                    <div class="menu-details">
+                        <h3>Diavola</h3>
+                        <p>Pomodoro San Marzano DOP, mozzarella fior di latte, salame piccante artigianale, basilico.
+                        </p>
+                    </div>
+                    <span class="price">€ 8,00</span>
+                </div>
+
+                <div class="menu-item fade-in-up delay-2">
+                    <div class="pizza-icon">🌋</div>
+                    <div class="menu-details">
+                        <h3>Partenopea</h3>
+                        <p>Mozzarella fior di latte, provola affumicata di Agerola, salame Napoli, ciuffi di ricotta
+                            fresca, pepe nero macinato.</p>
+                    </div>
+                    <span class="price">€ 9,50</span>
+                </div>
+
+                <div class="menu-item fade-in-up">
+                    <div class="pizza-icon">🥓</div>
+                    <div class="menu-details">
+                        <h3>Rustica</h3>
+                        <p>Mozzarella fior di latte, crema artigianale di pomodori secchi, salsiccia fresca sgranata,
+                            fonduta di Pecorino Romano, pepe nero, scaglie di Pecorino in uscita.</p>
+                    </div>
+                    <span class="price">€ 10,50</span>
+                </div>
+
+                <div class="menu-item fade-in-up delay-1">
+                    <div class="pizza-icon">🧀</div>
+                    <div class="menu-details">
+                        <h3>Cacio & Crunch</h3>
+                        <p>Mozzarella fior di latte, crema di Cacio e Pepe, salame piccante, sbriciolata di taralli
+                            pugliesi croccanti.</p>
+                    </div>
+                    <span class="price">€ 11,00</span>
+                </div>
+
+                <div class="menu-item fade-in-up delay-2">
+                    <div class="pizza-icon">🍖</div>
+                    <div class="menu-details">
+                        <h3>Bologna Gourmet</h3>
+                        <p>Mozzarella fior di latte, Mortadella IGP, pomodori secchi sott'olio, granella di pistacchio
+                            di Bronte.</p>
+                    </div>
+                    <span class="price">€ 11,50</span>
+                </div>
+
+                <div class="menu-item fade-in-up">
+                    <div class="pizza-icon">👑</div>
+                    <div class="menu-details">
+                        <h3>La Suprema <span
+                                style="font-size: 0.8rem; background: var(--primary-color); padding: 2px 8px; border-radius: 10px; color: white; vertical-align: middle; margin-left: 5px;">Specialità</span>
+                        </h3>
+                        <p>Mozzarella fior di latte, base bianca. In uscita: Burrata intera (125g), crema di pomodorini
+                            e pistacchio, basilico.</p>
+                    </div>
+                    <span class="price">€ 13,00</span>
+                </div>
+
+            </div>
+
+            <div class="download-section fade-in-up">
+                <h3>Vuoi stamparlo?</h3>
+                <a href="#" class="btn btn-outline" download>
+                    <i class="fa-solid fa-file-pdf"></i> Scarica il Menu in PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pizza Party di Valter & Gianfranco. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
