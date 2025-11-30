@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Party - La Pizza di Valter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="assets/images/logo.png" alt="Pizza Party Logo">
+                <span>Pizza Party</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">Chi Siamo</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#contact" class="nav-link">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="animate-text">Pizza Party</h1>
+            <p class="animate-text delay-1">La vera pizza artigianale di <strong>Valter</strong></p>
+            <a href="#menu" class="btn animate-text delay-2">Scopri il Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-in-left">
+                    <h2>Il Maestro Valter</h2>
+                    <p>Benvenuti da Pizza Party, dove la passione incontra la tradizione. Valter, il nostro mastro
+                        pizzaiolo, seleziona solo gli ingredienti migliori per offrirti un'esperienza indimenticabile.
+                    </p>
+                    <p>Ogni pizza è un'opera d'arte, lievitata naturalmente e cotta alla perfezione.</p>
+                </div>
+                <div class="about-image fade-in-right">
+                    <!-- Placeholder for Valter or Pizza making -->
+                    <div class="image-card">
+                        <i class="fa-solid fa-pizza-slice floating-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Le Nostre Pizze</h2>
+            <div class="menu-grid">
+                <!-- Pizza Item 1 -->
+                <div class="menu-item fade-in-up">
+                    <div class="pizza-icon">🍕</div>
+                    <div class="menu-details">
+                        <h3>Margherita</h3>
+                        <p>Pomodoro San Marzano, Mozzarella Fior di Latte, Basilico Fresco.</p>
+                    </div>
+                    <span class="price">€ 6.00</span>
+                </div>
+                <!-- Pizza Item 2 -->
+                <div class="menu-item fade-in-up delay-1">
+                    <div class="pizza-icon">🌶️</div>
+                    <div class="menu-details">
+                        <h3>Diavola</h3>
+                        <p>Pomodoro, Mozzarella, Salame Piccante, Olio EVO.</p>
+                    </div>
+                    <span class="price">€ 7.50</span>
+                </div>
+                <!-- Pizza Item 3 -->
+                <div class="menu-item fade-in-up delay-2">
+                    <div class="pizza-icon">🍄</div>
+                    <div class="menu-details">
+                        <h3>Capricciosa</h3>
+                        <p>Pomodoro, Mozzarella, Funghi, Carciofini, Prosciutto Cotto, Olive.</p>
+                    </div>
+                    <span class="price">€ 8.50</span>
+                </div>
+                <!-- Pizza Item 4 -->
+                <div class="menu-item fade-in-up">
+                    <div class="pizza-icon">🧀</div>
+                    <div class="menu-details">
+                        <h3>4 Formaggi</h3>
+                        <p>Mozzarella, Gorgonzola, Fontina, Parmigiano Reggiano.</p>
+                    </div>
+                    <span class="price">€ 8.00</span>
+                </div>
+                <!-- Pizza Item 5 -->
+                <div class="menu-item fade-in-up delay-1">
+                    <div class="pizza-icon">🥬</div>
+                    <div class="menu-details">
+                        <h3>Vegetariana</h3>
+                        <p>Pomodoro, Mozzarella, Melanzane, Zucchine, Peperoni.</p>
+                    </div>
+                    <span class="price">€ 8.00</span>
+                </div>
+                <!-- Pizza Item 6 -->
+                <div class="menu-item fade-in-up delay-2">
+                    <div class="pizza-icon">🥓</div>
+                    <div class="menu-details">
+                        <h3>Valter Special</h3>
+                        <p>Crema di Zucca, Pancetta Croccante, Provola Affumicata.</p>
+                    </div>
+                    <span class="price">€ 9.50</span>
+                </div>
+            </div>
+
+            <div class="download-section fade-in-up">
+                <h3>Vuoi il menu completo?</h3>
+                <a href="#" class="btn btn-outline" download>
+                    <i class="fa-solid fa-file-pdf"></i> Scarica il Menu in PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Vieni a Trovarci</h2>
+            <div class="contact-icons">
+                <div class="icon-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <!-- Empty as requested -->
+                </div>
+                <div class="icon-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <!-- Empty as requested -->
+                </div>
+                <div class="icon-box">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="icon-box">
+                    <i class="fa-brands fa-facebook"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pizza Party di Valter. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
