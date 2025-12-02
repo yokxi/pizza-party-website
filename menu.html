@@ -39,83 +39,20 @@
         <div class="container">
             <h2 class="section-title fade-in-up">Il Nostro Menu</h2>
             <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px;">
-                Scopri le creazioni di Valter e Gianfranco. Ingredienti freschi, impasto leggero e tanta passione.
+                Scopri le creazioni di Valter e Gianfranco. Ingredienti freschi e aggiornati in tempo reale.
             </p>
         </div>
     </section>
 
     <section id="menu-list" class="section menu" style="padding-top: 0;">
         <div class="container">
-            <div class="menu-grid">
-
-                <div class="menu-item fade-in-up">
-                    <div class="menu-details">
-                        <h3>Margherita</h3>
-                        <p>Pomodoro San Marzano DOP, mozzarella fior di latte, basilico fresco, olio EVO.</p>
-                    </div>
-                    <span class="price">€ 6,50</span>
-                </div>
-
-                <div class="menu-item fade-in-up delay-1">
-                    <div class="menu-details">
-                        <h3>Diavola</h3>
-                        <p>Pomodoro San Marzano DOP, mozzarella fior di latte, salame piccante artigianale, basilico.
-                        </p>
-                    </div>
-                    <span class="price">€ 8,00</span>
-                </div>
-
-                <div class="menu-item fade-in-up delay-2">
-                    <div class="menu-details">
-                        <h3>Partenopea</h3>
-                        <p>Mozzarella fior di latte, provola affumicata di Agerola, salame Napoli, ciuffi di ricotta
-                            fresca, pepe nero macinato.</p>
-                    </div>
-                    <span class="price">€ 9,50</span>
-                </div>
-
-                <div class="menu-item fade-in-up">
-                    <div class="menu-details">
-                        <h3>Rustica</h3>
-                        <p>Mozzarella fior di latte, crema artigianale di pomodori secchi, salsiccia fresca sgranata,
-                            fonduta di Pecorino Romano, pepe nero, scaglie di Pecorino in uscita.</p>
-                    </div>
-                    <span class="price">€ 10,50</span>
-                </div>
-
-                <div class="menu-item fade-in-up delay-1">
-                    <div class="menu-details">
-                        <h3>Cacio & Crunch</h3>
-                        <p>Mozzarella fior di latte, crema di Cacio e Pepe, salame piccante, sbriciolata di taralli
-                            pugliesi croccanti.</p>
-                    </div>
-                    <span class="price">€ 11,00</span>
-                </div>
-
-                <div class="menu-item fade-in-up delay-2">
-                    <div class="menu-details">
-                        <h3>Bologna Gourmet</h3>
-                        <p>Mozzarella fior di latte, Mortadella IGP, pomodori secchi sott'olio, granella di pistacchio
-                            di Bronte.</p>
-                    </div>
-                    <span class="price">€ 11,50</span>
-                </div>
-
-                <div class="menu-item fade-in-up">
-                    <div class="menu-details">
-                        <h3>La Suprema <span
-                                style="font-size: 0.8rem; background: var(--primary-color); padding: 2px 8px; border-radius: 10px; color: white; vertical-align: middle; margin-left: 5px;">Specialità</span>
-                        </h3>
-                        <p>Mozzarella fior di latte, base bianca. In uscita: Burrata intera (125g), crema di pomodorini
-                            e pistacchio, basilico.</p>
-                    </div>
-                    <span class="price">€ 13,00</span>
-                </div>
-
+            
+            <div class="menu-grid" id="dynamic-menu-container">
+                <p style="text-align:center; width:100%; color: var(--text-muted);">Caricamento menu in corso...</p>
             </div>
 
-            <div class="download-section fade-in-up">
-                <h3>Vuoi stamparlo?</h3>
+            <div class="download-section fade-in-up" style="margin-top: 50px;">
+                <h3>Vuoi il menu cartaceo?</h3>
                 <a href="#" class="btn btn-outline" download>
                     <i class="fa-solid fa-file-pdf"></i> Scarica il Menu in PDF
                 </a>
@@ -130,6 +67,64 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
 
+    <script>
+        function caricaMenuDaGoogle(json) {
+            const container = document.getElementById('dynamic-menu-container');
+            container.innerHTML = ''; 
+            
+            try {
+                const rows = json.table.rows;
+
+                if (rows.length === 0) {
+                    container.innerHTML = '<p style="text-align:center;">Nessuna pizza trovata.</p>';
+                    return;
+                }
+
+                rows.forEach((row, index) => {
+                    const nome = row.c[0] ? row.c[0].v : null;
+                    const descrizione = row.c[1] ? row.c[1].v : '';
+                    const prezzo = row.c[2] ? row.c[2].v : '';
+                    const specialita = row.c[3] ? row.c[3].v : '';
+
+                    if (!nome) return;
+
+                    let specialBadge = '';
+                    if (specialita && ['si', 'sì', 'yes'].includes(String(specialita).toLowerCase().trim())) {
+                        specialBadge = `<span style="font-size: 0.8rem; background: var(--primary-color); padding: 2px 8px; border-radius: 10px; color: white; vertical-align: middle; margin-left: 5px;">Specialità</span>`;
+                    }
+
+                    let delayClass = '';
+                    if (index % 3 === 1) delayClass = 'delay-1';
+                    if (index % 3 === 2) delayClass = 'delay-2';
+
+                    const pizzaHTML = `
+                        <div class="menu-item fade-in-up ${delayClass}">
+                            <div class="menu-details">
+                                <h3>${nome} ${specialBadge}</h3>
+                                <p>${descrizione}</p>
+                            </div>
+                            <span class="price">€ ${prezzo}</span>
+                        </div>
+                    `;
+                    container.innerHTML += pizzaHTML;
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.menu-item').forEach(el => observer.observe(el));
+
+            } catch (err) {
+                console.error("Errore lettura dati:", err);
+                container.innerHTML = '<p style="text-align:center;">Errore nella lettura del menu.</p>';
+            }
+        }
+    </script>
+    
+    <script src="https://docs.google.com/spreadsheets/d/1xxI51l8tE7ze5IcA6FbgO1F61qR7INoxRADVpkyD-gE/gviz/tq?tqx=out:json;responseHandler:caricaMenuDaGoogle"></script>
+
+</body>
 </html>
