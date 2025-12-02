@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Tuoi Eventi - Pizza Party</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .event-selector-container {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        select#event-select {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border: 2px solid var(--primary-color);
+            padding: 15px 50px 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-family: var(--font-main);
+            outline: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 15px;
+
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4d80' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 25px center;
+            background-size: 18px; 
+        }
+
+        select#event-select:hover {
+            box-shadow: 0 0 15px rgba(255, 77, 128, 0.3);
+        }
+
+        .event-date {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Pizza Party Logo">
+                <span>Pizza Party</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">Chi Siamo</a></li>
+                <li><a href="menu.html" class="nav-link">Menu</a></li>
+                <li><a href="#" class="nav-link active">Eventi</a></li> 
+                <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Benvenuto al tuo Evento</h2>
+            
+            <div class="event-selector-container fade-in-up">
+                <label for="event-select" style="font-size: 1.1rem;">Seleziona il tuo evento:</label><br>
+                <select id="event-select">
+                    <option value="">Caricamento...</option>
+                </select>
+                <span id="selected-date" class="event-date"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu-list" class="section menu" style="padding-top: 0;">
+        <div class="container">
+            <div class="menu-grid" id="dynamic-menu-container">
+                <p style="text-align: center; width: 100%; color: var(--text-muted); opacity: 0.7;">
+                    <i class="fa-solid fa-arrow-up"></i> Seleziona un evento per vedere le pizze
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pizza Party di Valter & Gianfranco. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        let allEventsData = []; 
+
+        function caricaEventiDaGoogle(json) {
+            const select = document.getElementById('event-select');
+            
+            try {
+                const rows = json.table.rows;
+                
+                allEventsData = rows.map(row => {
+                    // Usa .f (formattato) se esiste, altrimenti .v (valore grezzo)
+                    const getVal = (idx) => {
+                        if (!row.c[idx]) return "";
+                        if (row.c[idx].f) return row.c[idx].f;
+                        return row.c[idx].v !== null ? String(row.c[idx].v).trim() : "";
+                    };
+                    
+                    return {
+                        evento: getVal(0),      // Col A
+                        data: getVal(1),        // Col B
+                        pizza: getVal(2),       // Col C
+                        descrizione: getVal(3), // Col D
+                        prezzo: getVal(4)       // Col E
+                    };
+                }).filter(item => item.evento && item.evento !== "Evento"); 
+
+                if (allEventsData.length === 0) {
+                    select.innerHTML = '<option>Nessun evento trovato</option>';
+                    return;
+                }
+
+                const uniqueEvents = [...new Set(allEventsData.map(item => item.evento))];
+                
+                select.innerHTML = '<option value="">-- Scegli dalla lista --</option>';
+                uniqueEvents.forEach(eventName => {
+                    const option = document.createElement('option');
+                    option.value = eventName;
+                    option.textContent = eventName;
+                    select.appendChild(option);
+                });
+
+                select.addEventListener('change', function() {
+                    mostraMenuEvento(this.value);
+                });
+
+            } catch (err) {
+                console.error("Errore lettura Google:", err);
+                select.innerHTML = '<option>Errore dati</option>';
+            }
+        }
+
+        function mostraMenuEvento(nomeEvento) {
+            const container = document.getElementById('dynamic-menu-container');
+            const dateLabel = document.getElementById('selected-date');
+            container.innerHTML = ''; 
+
+            if (!nomeEvento) return;
+
+            const pizzeEvento = allEventsData.filter(item => item.evento === nomeEvento);
+
+            if (pizzeEvento.length > 0 && pizzeEvento[0].data) {
+                dateLabel.innerHTML = `<i class="fa-regular fa-calendar"></i> Data: ${pizzeEvento[0].data}`;
+            } else {
+                dateLabel.innerHTML = '';
+            }
+
+            pizzeEvento.forEach((pizza, index) => {
+                let delayClass = '';
+                if (index % 3 === 1) delayClass = 'delay-1';
+                if (index % 3 === 2) delayClass = 'delay-2';
+                
+                let prezzoDisplay = '';
+                if(pizza.prezzo) {
+                    if(!String(pizza.prezzo).includes('€')) {
+                        prezzoDisplay = `€ ${pizza.prezzo}`;
+                    } else {
+                        prezzoDisplay = pizza.prezzo;
+                    }
+                }
+
+                const pizzaHTML = `
+                    <div class="menu-item fade-in-up ${delayClass} visible">
+                        <div class="menu-details">
+                            <h3>${pizza.pizza}</h3>
+                            <p>${pizza.descrizione}</p>
+                        </div>
+                        <span class="price">${prezzoDisplay}</span>
+                    </div>
+                `;
+                container.innerHTML += pizzaHTML;
+            });
+        }
+    </script>
+    
+    <script src="https://docs.google.com/spreadsheets/d/1xxI51l8tE7ze5IcA6FbgO1F61qR7INoxRADVpkyD-gE/gviz/tq?tqx=responseHandler:caricaEventiDaGoogle&gid=2145781679" 
+            onerror="alert('Errore di connessione a Google.')"></script>
+
+</body>
+</html>
