@@ -64,21 +64,31 @@ ul {
     align-items: center;
 }
 
+
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    position: relative; 
+    height: 58px; 
     font-weight: 900;
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     color: var(--primary-color);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .logo img {
-    height: 50px;
+    height: 108px; 
     width: auto;
+    position: absolute; 
+    top: -30px; 
+    left: 0px;
     transition: transform 0.3s ease;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+}
+
+.logo span {
+    margin-left: 100px; 
 }
 
 .logo:hover img {
@@ -220,10 +230,8 @@ ul {
 
 /* About Section */
 .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
+    display: block; 
+    width: 100%;
 }
 
 .about-text h2 {
