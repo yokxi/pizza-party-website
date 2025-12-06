@@ -15,8 +15,6 @@ The site includes a menu and event management system based on **Google Sheets**,
 
 The website automatically reads data from a Google Excel file. To change prices, pizzas, or events, simply modify that file.
 
-**🔗 Link to Management Sheet:** [Click here to open Google Sheets](https://docs.google.com/spreadsheets/d/1xxI51l8tE7ze5IcA6FbgO1F61qR7INoxRADVpkyD-gE/edit)
-
 ### 1. How to Edit the Pizza Menu
 Open the **"Menu Pizze"** tab (bottom left of the sheet).
 Fill in the columns following this exact order:
